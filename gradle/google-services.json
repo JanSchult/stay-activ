@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "871767394648",
+    "project_id": "stay-activ-kotlin",
+    "storage_bucket": "stay-activ-kotlin.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:871767394648:android:4ab3b802c731928106fd2d",
+        "android_client_info": {
+          "package_name": "com.example.stayactiv"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBUszXHkNJ9rKZyVp5Fu8xBemwS2sF0D4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
