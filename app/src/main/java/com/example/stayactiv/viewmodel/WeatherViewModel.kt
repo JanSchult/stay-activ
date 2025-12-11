@@ -1,42 +1,49 @@
-package com.example.stayactiv.viewmodel
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.stayactiv.data.repository.WeatherRepository
 import com.example.stayactiv.util.WeatherUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import com.example.stayactiv.util.WeatherEvent
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.*
 
 class WeatherViewModel(
-    private val repository: WeatherRepository
 ) : ViewModel() {
+    private val repo: WeatherRepository = WeatherRepository()
+
 
     private val _uiState = MutableStateFlow(WeatherUiState())
-    val uiState: StateFlow<WeatherUiState> = _uiState.asStateFlow()
+    val uiState: StateFlow<WeatherUiState> = _uiState
+init {
+    loadWeather(52.520008, 13.404954)
+}
+    fun loadWeather(lat: Double, lon: Double) {
+        _uiState.value = WeatherUiState(isLoading = true)
 
-    /**
-     * Lädt Wetterdaten für die angegebenen Koordinaten
-     */
-    fun loadWeather(latitude: Double, longitude: Double) {
         viewModelScope.launch {
-            repository.getWeather(latitude, longitude)
-                .catch { e ->
-                    _uiState.update { it.copy(isLoading = false, errorMessage = e.message) }
-                }
-                .collect { (today, tomorrow) ->
-                    _uiState.update {
-                        it.copy(
-                            today = today,
-                            tomorrow = tomorrow,
-                            isLoading = false,
-                            errorMessage = null
-                        )
-                    }
-                }
+            val result = repo.getWeather(lat, lon)
+
+            if (result.isSuccess) {
+                val data = result.getOrNull()
+                _uiState.value = WeatherUiState(
+                    today = data?.today,
+                    tomorrow = data?.tomorrow,
+                    isLoading = false
+                )
+            } else {
+                // Fehler kommt komplett aus dem Repository
+                val message = result.exceptionOrNull()?.message ?: "Unbekannter Fehler"
+
+                _uiState.value = WeatherUiState(
+                    today = null,
+                    tomorrow = null,
+                    isLoading = false,
+                    errorMessage = message
+                )
+            }
         }
     }
 }
+

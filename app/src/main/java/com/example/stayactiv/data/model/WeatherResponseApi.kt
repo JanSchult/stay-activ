@@ -1,9 +1,6 @@
 package com.example.stayactiv.data.model
 
-data class OpenMeteoResponse(
-    val latitude: Double,
-    val longitude: Double,
-    val timezone: String,
+data class WeatherResponseApi(
     val current: CurrentWeatherApi,
     val daily: DailyWeatherApi
 )

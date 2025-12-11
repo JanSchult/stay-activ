@@ -1,5 +1,6 @@
 package com.example.stayactiv.ui.screens
 
+import WeatherViewModel
 import android.view.Surface
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,14 +20,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.stayactiv.data.model.WeatherToday
 import com.example.stayactiv.data.model.WeatherTomorrow
 import com.example.stayactiv.util.WeatherCondition
 import com.example.stayactiv.util.WeatherUiState
-import com.example.stayactiv.viewmodel.WeatherViewModel
 
 @Composable
-fun WeatherScreen(viewModel: WeatherViewModel) {
+fun WeatherScreen(viewModel: WeatherViewModel =viewModel()) {
     val uiState by viewModel.uiState.collectAsState()
 
     if (uiState.isLoading) {

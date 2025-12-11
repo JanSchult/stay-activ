@@ -62,6 +62,4 @@ interface ActivityDao {
     )
     fun getActivitiesByOutdoor(isOutdoor: Boolean): Flow<List<ActivityItem>>
 
-    // ⚠️ Wetter basiert auf einer Liste – daher kein direkter SQL-Filter möglich.
-    // Dafür nutzen wir Repository + Filter in Kotlin.
 }

@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.stayactiv.util.ActivityCategory
 import com.example.stayactiv.util.DifficultyLevel
+import com.example.stayactiv.util.RatingCategory
 import com.example.stayactiv.util.WeatherCondition
 import java.util.UUID
 
