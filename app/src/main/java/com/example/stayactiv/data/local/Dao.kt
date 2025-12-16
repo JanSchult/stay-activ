@@ -12,10 +12,10 @@ interface ActivityDao {
     // Basic CRUD
     // -------------------------
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertActivity(activity: ActivityItem)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertActivities(activities: List<ActivityItem>)
 
     @Update

@@ -11,16 +11,16 @@ import com.example.stayactiv.util.Converters
 @Database(entities = [ActivityItem::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 
-abstract class NoteDatabase : RoomDatabase() {
+abstract class ActivityDatabase : RoomDatabase() {
     abstract fun activityDao(): ActivityDao
 
     companion object {
         @Volatile
-        private var Instance: NoteDatabase? = null
+        private var Instance: ActivityDatabase? = null
 
-        fun getDatabase(context: Context): NoteDatabase {
+        fun getDatabase(context: Context): ActivityDatabase {
             return Instance ?: synchronized(this) {
-                Room.databaseBuilder(context, NoteDatabase::class.java, "note_database")
+                Room.databaseBuilder(context, ActivityDatabase::class.java, "activity_database")
                     .build().also { Instance = it }
             }
         }

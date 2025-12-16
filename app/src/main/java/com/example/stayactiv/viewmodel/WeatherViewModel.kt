@@ -1,3 +1,4 @@
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.stayactiv.data.repository.WeatherRepository
@@ -10,8 +11,8 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 
 class WeatherViewModel(
+    private val repo: WeatherRepository,
 ) : ViewModel() {
-    private val repo: WeatherRepository = WeatherRepository()
 
 
     private val _uiState = MutableStateFlow(WeatherUiState())

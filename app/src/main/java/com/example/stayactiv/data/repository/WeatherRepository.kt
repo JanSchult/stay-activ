@@ -8,9 +8,9 @@ import com.example.stayactiv.data.remote.ApiErrorHandler
 import com.example.stayactiv.data.remote.OpenMeteoApi
 import com.example.stayactiv.data.remote.WeatherApiService
 
-class WeatherRepository(
+class WeatherRepository(  private val api: OpenMeteoApi = WeatherApiService.retrofitService
 ) {
-    private val api: OpenMeteoApi = WeatherApiService.retrofitService
+
 
     suspend fun getWeather(lat: Double, lon: Double): Result<WeatherData> {
         return try {
