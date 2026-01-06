@@ -32,7 +32,8 @@ object WeatherMapper {
             humidity = current.relative_humidity_2m ?: 0,
             windSpeed = current.wind_speed_10m ?: 0.0,
             windDirection = current.wind_direction_10m ?: 0,
-            uvIndex = current.uv_index ?: 0.0
+            uvIndex = current.uv_index ?: 0.0,
+            isDay = current.is_day == 1
         )
     }
 

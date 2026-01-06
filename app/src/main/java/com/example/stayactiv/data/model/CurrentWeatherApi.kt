@@ -7,5 +7,6 @@ data class CurrentWeatherApi(
     val wind_speed_10m: Double?,
     val wind_direction_10m: Int?,
     val relative_humidity_2m: Int?,
-    val uv_index: Double?
+    val uv_index: Double?,
+    val is_day: Int?
 )

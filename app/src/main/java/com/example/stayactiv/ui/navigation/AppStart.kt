@@ -11,7 +11,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.example.stayactiv.data.repository.WeatherRepository
+import com.example.stayactiv.ui.screens.ActivityDetailScreen
 import com.example.stayactiv.ui.screens.ActivityScreen
+import com.example.stayactiv.ui.screens.AddActivityScreen
 import com.example.stayactiv.ui.screens.WeatherScreen
 
 @SuppressLint("ViewModelConstructorInComposable")

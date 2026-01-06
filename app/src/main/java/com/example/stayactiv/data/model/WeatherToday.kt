@@ -10,5 +10,6 @@ data class WeatherToday(
     val humidity: Int,
     val windSpeed: Double,
     val windDirection: Int,
-    val uvIndex: Double
+    val uvIndex: Double,
+    val isDay: Boolean
 )

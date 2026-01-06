@@ -17,7 +17,7 @@ kotlinSerialization = "1.6.3"
 koinBom = "4.1.0-Beta4"
 roomRuntime = "2.8.3"
 kspVersion = "2.0.21-1.0.27"
-weatherIcons = "1.1.0"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -50,7 +50,6 @@ koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomRuntime" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomRuntime" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomRuntime" }
-weather-icons = { module = "br.com.devsrsouza.compose.icons:weather-icons", version.ref = "weatherIcons" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
