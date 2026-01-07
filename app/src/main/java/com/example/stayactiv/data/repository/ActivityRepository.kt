@@ -8,10 +8,12 @@ class ActivityRepository(
     private val dao: ActivityDao
 ) {
 
-    suspend fun addActivity(activity: ActivityItem) {
-        dao.insertActivity(activity)
-    }
-
-    fun getActivities(): Flow<List<ActivityItem>> =
+    fun getAllActivities(): Flow<List<ActivityItem>> =
         dao.getAllActivities()
+
+    suspend fun insert(activity: ActivityItem) =
+        dao.insertActivity(activity)
+
+    suspend fun getById(id: String): Flow<ActivityItem?> =
+        dao.getActivityById(id)
 }

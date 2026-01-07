@@ -23,9 +23,9 @@ fun ActivityDetailRating(rating: RatingCategory?) {
                 Icon(
                     painter = painterResource(
                         if (r.stars() <= ratingStars as String)
-                            R.drawable.baseline_star_24
-                        else
                             R.drawable.outline_star_24
+                        else
+                            R.drawable.baseline_star_24
                     ),
                     contentDescription = null
                 )

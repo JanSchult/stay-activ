@@ -2,8 +2,8 @@ package com.example.stayactiv.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.stayactiv.data.local.ActivityDao
 import com.example.stayactiv.data.model.ActivityItem
+import com.example.stayactiv.data.repository.ActivityRepository
 import com.example.stayactiv.util.ActivityCategory
 import com.example.stayactiv.util.AddActivityUiState
 import com.example.stayactiv.util.RatingCategory
@@ -17,17 +17,35 @@ import kotlinx.coroutines.launch
 import java.util.UUID
 
 class ActivitiesViewModel(
-    private val dao: ActivityDao
+    private val repository: ActivityRepository
 ) : ViewModel() {
 
     // --- 1️⃣ Alle Aktivitäten ---
     val activities: StateFlow<List<ActivityItem>> =
-        dao.getAllActivities()
+        repository.getAllActivities()
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5_000),
                 initialValue = emptyList()
             )
+    init {
+        viewModelScope.launch {
+            repository.insert(
+                ActivityItem(
+                    id = UUID.randomUUID().toString(),
+                    title = "Test Aktivität",
+                    description = "Debug",
+                    category = ActivityCategory.OTHER,
+                    durationMinutes = 10,
+                    rating = RatingCategory.ONE_STAR,
+                    recommendedWeather = listOf(WeatherCondition.ANY),
+                    isOutdoor = false,
+                    isUserCreated = false,
+                    imageUrl = null
+                )
+            )
+        }
+    }
 
     // --- 2️⃣ Detail: Activity nach ID ---
     fun getActivityById(id: String): ActivityItem? {
@@ -78,7 +96,7 @@ class ActivitiesViewModel(
         )
 
         viewModelScope.launch {
-            dao.insertActivity(newActivity)
+            repository.insert(newActivity)
             resetAddState()
         }
     }

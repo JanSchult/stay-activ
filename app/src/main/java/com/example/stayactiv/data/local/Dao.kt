@@ -32,7 +32,7 @@ interface ActivityDao {
     fun getAllActivities(): Flow<List<ActivityItem>>
 
     @Query("SELECT * FROM activities WHERE id = :id LIMIT 1")
-    fun getActivityById(id: Long): Flow<ActivityItem?>
+    fun getActivityById(id: String): Flow<ActivityItem?>
 
     @Query("SELECT * FROM activities WHERE isUserCreated = 1 ORDER BY title ASC")
     fun getUserActivities(): Flow<List<ActivityItem>>

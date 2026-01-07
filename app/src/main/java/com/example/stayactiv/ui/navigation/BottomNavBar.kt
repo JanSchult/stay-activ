@@ -15,33 +15,28 @@ import com.example.stayactiv.R
 @Composable
 fun BottomBar(navController: NavHostController) {
 
-    val currentRoute =
-        navController.currentBackStackEntryAsState().value?.toRoute<Any>()
-
     NavigationBar {
 
         NavigationBarItem(
-            selected = currentRoute is WeatherRoute,
+            selected = false,
             onClick = {
                 navController.navigate(WeatherRoute) {
-                    popUpTo(WeatherRoute)
                     launchSingleTop = true
                 }
             },
-            {
+            icon = {
                 Icon(
-                    painter = painterResource(id = R.drawable.outline_cloud_24),
-                    contentDescription = null
+                    painter = painterResource(R.drawable.outline_cloud_24),
+                    contentDescription = "Wetter"
                 )
             },
             label = { Text("Wetter") }
         )
 
         NavigationBarItem(
-            selected = currentRoute is ActivitiesRoute,
+            selected = false,
             onClick = {
                 navController.navigate(ActivitiesRoute) {
-                    popUpTo(WeatherRoute)
                     launchSingleTop = true
                 }
             },

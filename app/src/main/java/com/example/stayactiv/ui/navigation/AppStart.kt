@@ -18,13 +18,14 @@ import com.example.stayactiv.ui.screens.ActivityScreen
 import com.example.stayactiv.ui.screens.AddActivityScreen
 import com.example.stayactiv.ui.screens.WeatherScreen
 import com.example.stayactiv.viewmodel.ActivitiesViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @SuppressLint("ViewModelConstructorInComposable")
 @Composable
 fun AppStart() {
     val navController = rememberNavController()
-    val activitiesViewModel: ActivitiesViewModel = viewModel()
-    val weatherViewModel: WeatherViewModel = viewModel()
+    val activitiesViewModel: ActivitiesViewModel = koinViewModel()
+    val weatherViewModel: WeatherViewModel = koinViewModel()
 
     Scaffold(
         bottomBar = { BottomBar(navController) }
@@ -39,6 +40,9 @@ fun AppStart() {
             composable<ActivitiesRoute> {
                 ActivityScreen(
                     activities = activitiesViewModel.activities.collectAsState().value,
+                    onAddActivityClick = {
+                        navController.navigate(AddActivityRoute)
+                    },
                     onActivityClick = { activity ->
                         navController.navigate(
                             ActivityDetailRoute(activity.id)

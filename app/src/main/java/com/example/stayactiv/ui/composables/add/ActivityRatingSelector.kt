@@ -34,9 +34,9 @@ fun ActivityRatingSelector(
                     Icon(
                         painter = painterResource(
                             id = if (r.stars() <= rating.stars())
-                                R.drawable.baseline_star_24
-                            else
                                 R.drawable.outline_star_24
+                            else
+                                R.drawable.baseline_star_24
                         ),
                         contentDescription = "${r.stars()} Sterne"
                     )

@@ -3,6 +3,7 @@ package com.example.stayactiv.di
 import WeatherViewModel
 import com.example.stayactiv.data.local.ActivityDatabase
 import com.example.stayactiv.data.remote.WeatherApiService
+import com.example.stayactiv.data.repository.ActivityRepository
 import com.example.stayactiv.data.repository.WeatherRepository
 import com.example.stayactiv.viewmodel.ActivitiesViewModel
 import org.koin.android.ext.koin.androidContext
@@ -23,6 +24,9 @@ val appModule = module {
     }
     single<WeatherRepository> {
         WeatherRepository(get())
+    }
+    single<ActivityRepository> {
+        ActivityRepository(get())
     }
     viewModelOf(::ActivitiesViewModel)
     viewModelOf(::WeatherViewModel)
