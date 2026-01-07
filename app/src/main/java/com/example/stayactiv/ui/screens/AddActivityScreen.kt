@@ -69,31 +69,4 @@ fun AddActivityScreen(
         AddActivityActions(onSave = onSave)
     }
 }
-@Preview(showBackground = true)
-@Composable
-fun AddActivityScreenPreview() {
 
-    var title by remember { mutableStateOf("Joggen im Park") }
-    var category by remember { mutableStateOf(ActivityCategory.SPORTS) }
-    var duration: Int? by remember { mutableStateOf(60) }
-    var rating: RatingCategory by remember { mutableStateOf(Rating.RATING_3_STARS) }
-    var note by remember { mutableStateOf("Entspannende Runde am Morgen") }
-
-    val state = AddActivityUiState(
-        title = title,
-        category = category,
-        durationMinutes = duration,
-        rating = rating,
-        note = note
-    )
-
-    AddActivityScreen(
-        state = state,
-        onTitleChange = { title = it },
-        onCategoryChange = { category = it },
-        onDurationChange = { duration = it },
-        onRatingChange = { rating = it },
-        onNoteChange = { note = it },
-        onSave = { /* no-op für Preview */ }
-    )
-}

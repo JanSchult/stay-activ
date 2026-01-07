@@ -16,11 +16,13 @@ fun ActivityDetailRating(rating: RatingCategory?) {
     Column {
         Text("Bewertung", style = MaterialTheme.typography.titleSmall)
 
+        val ratingStars: Any = rating?.stars() ?: 0
+
         Row {
             RatingCategory.entries.forEach { r ->
                 Icon(
                     painter = painterResource(
-                        if (r.stars() <= rating.stars())
+                        if (r.stars() <= ratingStars as String)
                             R.drawable.baseline_star_24
                         else
                             R.drawable.outline_star_24
