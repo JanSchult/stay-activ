@@ -61,5 +61,6 @@ interface ActivityDao {
     """
     )
     fun getActivitiesByOutdoor(isOutdoor: Boolean): Flow<List<ActivityItem>>
-
+    @Query("SELECT COUNT(*) FROM activities")
+    suspend fun count(): Int
 }

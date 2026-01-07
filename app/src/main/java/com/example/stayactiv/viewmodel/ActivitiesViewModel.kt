@@ -8,6 +8,7 @@ import com.example.stayactiv.util.ActivityCategory
 import com.example.stayactiv.util.AddActivityUiState
 import com.example.stayactiv.util.RatingCategory
 import com.example.stayactiv.util.WeatherCondition
+import defaultActivities
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -30,20 +31,9 @@ class ActivitiesViewModel(
             )
     init {
         viewModelScope.launch {
-            repository.insert(
-                ActivityItem(
-                    id = UUID.randomUUID().toString(),
-                    title = "Test Aktivität",
-                    description = "Debug",
-                    category = ActivityCategory.OTHER,
-                    durationMinutes = 10,
-                    rating = RatingCategory.ONE_STAR,
-                    recommendedWeather = listOf(WeatherCondition.ANY),
-                    isOutdoor = false,
-                    isUserCreated = false,
-                    imageUrl = null
-                )
-            )
+            if (repository.getCount() == 0) {
+                defaultActivities.forEach { repository.insert(it) }
+            }
         }
     }
 

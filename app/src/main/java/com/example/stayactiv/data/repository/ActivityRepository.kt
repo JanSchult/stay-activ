@@ -16,4 +16,5 @@ class ActivityRepository(
 
     suspend fun getById(id: String): Flow<ActivityItem?> =
         dao.getActivityById(id)
+    suspend fun getCount(): Int = dao.count()
 }
