@@ -9,5 +9,6 @@ enum class ActivityCategory {
     SOCIAL,
     CREATIVE,
     HOME,
-    OTHER
+    OTHER,
+    RECOMMENDED_TODAY
 }

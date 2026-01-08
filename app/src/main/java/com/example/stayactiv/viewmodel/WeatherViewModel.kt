@@ -2,6 +2,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.stayactiv.data.repository.WeatherRepository
+import com.example.stayactiv.util.WeatherCondition
 import com.example.stayactiv.util.WeatherUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,6 +21,12 @@ class WeatherViewModel(
 init {
     loadWeather(52.520008, 13.404954)
 }
+    val currentWeather: StateFlow<WeatherCondition?> =
+        uiState.map { it.today?.weather }.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = null
+        )
     fun loadWeather(lat: Double, lon: Double) {
         _uiState.value = WeatherUiState(isLoading = true)
 
